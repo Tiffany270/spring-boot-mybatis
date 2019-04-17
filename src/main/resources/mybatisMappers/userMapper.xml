@@ -17,5 +17,10 @@
     values(#{uname}, #{uemail},#{upassword})
   </insert>
 
+    <!--根据姓名和密码查询-->
+    <select id="getUserByNameAndPassword">
+       select * from user where uname=#{uname} and upassword=#{upassword}
+   </select>
+
 
 </mapper>

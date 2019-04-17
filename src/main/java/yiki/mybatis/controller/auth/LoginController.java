@@ -1,10 +1,7 @@
 package yiki.mybatis.controller.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import yiki.mybatis.Service.UserService;
 import yiki.mybatis.bean.User;
 
@@ -18,6 +15,13 @@ public class LoginController {
 //        System.out.println(name + ":" + password);
 //    }
 
+    
+    /*
+    * x/user/1 GET  根据用户id查询用户数据
+      x/user   POST 新增用户
+      x/user   PUT 修改用户信息
+      x/user   DELETE 删除用户信息*/
+
     @PostMapping("/user")
     public int registeUser(@RequestBody User user) {
         boolean res = userService.addUser(user);
@@ -26,5 +30,17 @@ public class LoginController {
         }
         return 0;
     }
+
+
+    @PostMapping("/authUser")
+    public int authUser(@RequestBody String uname, @RequestBody String upassword) {
+        System.out.println(upassword);
+        boolean res = userService.authUser(uname, upassword);
+        if (res) {
+            return 1;
+        }
+        return 0;
+    }
+
 
 }
