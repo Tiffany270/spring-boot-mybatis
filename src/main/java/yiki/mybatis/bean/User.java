@@ -6,11 +6,7 @@ public class User {
     private String uemail;
     private String upassword;
 
-    public User(String uname, String uemail, String upassword) {
-        this.uname = uname;
-        this.uemail = uemail;
-        this.upassword = upassword;
-    }
+
 
     public String getUpassword() {
         return upassword;
