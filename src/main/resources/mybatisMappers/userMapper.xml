@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yiki.mybatis.mapper.UserYmlMapper">
+
+    <!--根据用户ID查询-->
+    <select id="getUserById" resultType="yiki.mybatis.bean.User">
+       select * from user where  uid =#{uid}
+   </select>
+
+    <!--新增用户-->
+    <insert id="insertUser"
+            useGeneratedKeys="true" keyProperty="uid"
+            parameterType="yiki.mybatis.bean.User">
+    insert into user(uname, uemail,upassword)
+    values(#{uname}, #{uemail},#{upassword})
+  </insert>
+
+
+</mapper>
