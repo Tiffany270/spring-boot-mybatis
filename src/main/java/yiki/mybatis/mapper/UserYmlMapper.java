@@ -22,7 +22,7 @@ public interface UserYmlMapper {
 
     public boolean deleteAllUsers();
 
-    public boolean getUserByNameAndPassword(String uname,String upassword);
+    public User getUserByNameAndPassword(String uname,String upassword);
 
 
 }

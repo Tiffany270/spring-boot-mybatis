@@ -1,5 +1,6 @@
 package yiki.mybatis.controller.auth;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import yiki.mybatis.Service.UserService;
@@ -15,7 +16,7 @@ public class LoginController {
 //        System.out.println(name + ":" + password);
 //    }
 
-    
+
     /*
     * x/user/1 GET  根据用户id查询用户数据
       x/user   POST 新增用户
@@ -33,13 +34,13 @@ public class LoginController {
 
 
     @PostMapping("/authUser")
-    public int authUser(@RequestBody String uname, @RequestBody String upassword) {
-        System.out.println(upassword);
-        boolean res = userService.authUser(uname, upassword);
-        if (res) {
-            return 1;
+    public User authUser(@RequestBody User user) {
+        System.out.println(user.getUname());
+        User res = userService.authUser(user.getUname(), user.getUpassword());
+        if (res != null) {
+            return user;
         }
-        return 0;
+        return null;
     }
 
 

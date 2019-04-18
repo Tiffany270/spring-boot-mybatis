@@ -15,8 +15,12 @@ public class UserService {
         return usermapper.insertUser(user);
     }
 
-    public boolean authUser(String uname, String upassword) {
-        return usermapper.getUserByNameAndPassword(uname,upassword);
+    public User authUser(String uname, String upassword) {
+        try {
+            return usermapper.getUserByNameAndPassword(uname, upassword);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

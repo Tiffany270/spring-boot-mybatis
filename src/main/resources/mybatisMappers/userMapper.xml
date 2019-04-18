@@ -4,6 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yiki.mybatis.mapper.UserYmlMapper">
 
+
+
     <!--根据用户ID查询-->
     <select id="getUserById" resultType="yiki.mybatis.bean.User">
        select * from user where  uid =#{uid}
@@ -18,7 +20,7 @@
   </insert>
 
     <!--根据姓名和密码查询-->
-    <select id="getUserByNameAndPassword">
+    <select id="getUserByNameAndPassword" resultType="yiki.mybatis.bean.User">
        select * from user where uname=#{uname} and upassword=#{upassword}
    </select>
 
