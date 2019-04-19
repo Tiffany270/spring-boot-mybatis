@@ -23,14 +23,6 @@ public class LoginController {
       x/user   PUT 修改用户信息
       x/user   DELETE 删除用户信息*/
 
-    @PostMapping("/user")
-    public int registeUser(@RequestBody User user) {
-        boolean res = userService.addUser(user);
-        if (res) {
-            return 1;
-        }
-        return 0;
-    }
 
 
     @PostMapping("/authUser")
