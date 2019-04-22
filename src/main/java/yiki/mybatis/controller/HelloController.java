@@ -1,9 +1,8 @@
 package yiki.mybatis.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import yiki.mybatis.bean.Data;
 import yiki.mybatis.bean.Firm;
 import yiki.mybatis.bean.Resume;
 import yiki.mybatis.bean.User;
@@ -11,6 +10,10 @@ import yiki.mybatis.mapper.FirmMapper;
 import yiki.mybatis.mapper.ResumeMapper;
 import yiki.mybatis.mapper.UserMapper;
 import yiki.mybatis.mapper.UserYmlMapper;
+import yiki.mybatis.util.JsonUtil;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 
 /*
@@ -59,4 +62,27 @@ public class HelloController {
         }
         return 0;
     }
+
+    @PostMapping("/test")
+    public int test(@RequestBody Map<String, Object> models) {
+        Map<String, Object> userobj = (Map<String, Object>) models.get("user");
+        ArrayList<Map<String, Object>> test = (ArrayList<Map<String, Object>>) models.get("test");
+
+
+        try {
+            User user = JsonUtil.map2obj(userobj, User.class);
+
+            for (Map<String, Object> item : test) {
+                Data data = JsonUtil.map2obj(item, Data.class);
+                System.out.println(data);
+                System.out.println(data.getB());
+            }
+
+            System.out.println(user.getUname());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 1;
+    }
+
 }
