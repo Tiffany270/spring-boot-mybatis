@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yiki.mybatis.mapper.ResumeMapper">
+
+
+    
+
+
+    <insert id="insertResume"
+            keyProperty="uid"
+            parameterType="yiki.mybatis.bean.Resume">
+    insert into resume
+    (uid, name, email,phone,region,school,degree,age,self,occupation,type,status,pay,workExps)
+    values
+    (#{uid},#{name},#{email},#{phone},#{region},#{school},#{degree},#{age},#{self},#{occupation},#{type},#{status},#{pay},#{workExps})
+  </insert>
+
+</mapper>
