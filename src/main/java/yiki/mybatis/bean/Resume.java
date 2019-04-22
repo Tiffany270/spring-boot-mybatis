@@ -22,7 +22,6 @@ public class Resume {
     private String type;            //职业类型
     private String status;          //现在的状态
     private String pay;             //期望薪资
-    private List<WorkExp> workExps;          //工作经验
     public Integer getUid() {
         return uid;
     }
@@ -47,16 +46,7 @@ public class Resume {
                 ", type='" + type + '\'' +
                 ", status='" + status + '\'' +
                 ", pay='" + pay + '\'' +
-                ", workExps='" + workExps + '\'' +
                 '}';
-    }
-
-    public List<WorkExp> getWorkExps() {
-        return workExps;
-    }
-
-    public void setWorkExps(List<WorkExp> workExps) {
-        this.workExps = workExps;
     }
 
     public String getName() {

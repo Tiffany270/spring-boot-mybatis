@@ -54,14 +54,7 @@ public class HelloController {
         return firmMapper.getFirmById(cid);
     }
 
-    @PostMapping("/resume")
-    public int postresume(@RequestBody Resume resume) {
-        System.out.println(resume);
-        if (resumeMapper.insertResume(resume)) {
-            return 1;
-        }
-        return 0;
-    }
+
 
     @PostMapping("/test")
     public int test(@RequestBody Map<String, Object> models) {

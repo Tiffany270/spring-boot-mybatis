@@ -5,16 +5,19 @@
 <mapper namespace="yiki.mybatis.mapper.ResumeMapper">
 
 
-    
 
+    <!--根据用户ID查询-->
+    <select id="getResumeByuid" resultType="yiki.mybatis.bean.Resume">
+       select * from resume where  uid =#{uid}
+   </select>
 
     <insert id="insertResume"
             keyProperty="uid"
             parameterType="yiki.mybatis.bean.Resume">
     insert into resume
-    (uid, name, email,phone,region,school,degree,age,self,occupation,type,status,pay,workExps)
+    (uid, name, email,phone,region,school,degree,age,self,occupation,type,status,pay)
     values
-    (#{uid},#{name},#{email},#{phone},#{region},#{school},#{degree},#{age},#{self},#{occupation},#{type},#{status},#{pay},#{workExps})
+    (#{uid},#{name},#{email},#{phone},#{region},#{school},#{degree},#{age},#{self},#{occupation},#{type},#{status},#{pay})
   </insert>
 
 </mapper>

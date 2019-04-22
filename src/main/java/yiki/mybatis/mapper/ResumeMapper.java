@@ -7,4 +7,5 @@ import yiki.mybatis.bean.Resume;
 public interface ResumeMapper {
 
     public boolean insertResume(Resume resume);
+    public Resume getResumeByuid(Integer uid);
 }

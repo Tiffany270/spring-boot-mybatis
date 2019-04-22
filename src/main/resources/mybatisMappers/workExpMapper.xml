@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yiki.mybatis.mapper.WorkExpMapper">
+
+
+    <select id="getWorkExpByUid"
+            parameterType="map"
+            resultType="map">
+        SELECT * FROM workExp WHERE uid= #{uid}
+    </select>
+
+
+    <insert id="insertWorkExp"
+            parameterType="yiki.mybatis.bean.WorkExp">
+    insert into workExp
+    (uid, name,type,ocp,dep,opcDate,text)
+    values
+    (#{uid},#{name},#{type},#{ocp},#{dep},#{opcDate},#{text})
+  </insert>
+
+</mapper>

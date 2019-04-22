@@ -3,12 +3,30 @@ package yiki.mybatis.bean;
 /*属于user
  * 工作经验*/
 public class WorkExp {
+    private Integer id;
+    private Integer uid;
     private String name;    //公司名称
     private String type;    //行业类型
     private String ocp;     //职位
     private String dep;     //部门
     private String opcDate; //任职时间  time-time
-    private String desc;    //详细
+    private String text;    //详细
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
     public String getName() {
         return name;
@@ -50,11 +68,26 @@ public class WorkExp {
         this.opcDate = opcDate;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getText() {
+        return text;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return "WorkExp{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", ocp='" + ocp + '\'' +
+                ", dep='" + dep + '\'' +
+                ", opcDate='" + opcDate + '\'' +
+                ", text='" + text + '\'' +
+                '}';
     }
 }
+
