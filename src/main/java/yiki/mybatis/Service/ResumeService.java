@@ -34,7 +34,6 @@ public class ResumeService {
             Resume resume = JsonUtil.map2obj(resumeobj, Resume.class);
 
             Resume checkRept = resumeMapper.getResumeByuid(resume.getUid());
-
             if (checkRept != null) {
                 return false;
             }

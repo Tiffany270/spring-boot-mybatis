@@ -16,7 +16,7 @@ public class ResumeController {
     private ResumeService resumeService;
 
     @PostMapping("/resume")
-    public int test(@RequestBody Map<String, Object> models) {
+    public int addResume(@RequestBody Map<String, Object> models) {
 
         boolean res = resumeService.AddResume(models);
         if (res) {

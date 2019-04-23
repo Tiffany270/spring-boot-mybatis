@@ -5,10 +5,27 @@
 <mapper namespace="yiki.mybatis.mapper.FirmMapper">
 
 
+    <!-- =====Firm info====== -->
+    <insert id="insertFirmInfo"
+            keyProperty="cid"
+            parameterType="yiki.mybatis.bean.FirmInfo">
+    insert into firminfo(cid,name,email,phone,region,intro,type,num,brief)
+    values(#{cid},#{name},#{email},#{phone},#{region},#{intro},#{type},#{num},#{brief})
+  </insert>
 
+    <select id="getFirmInfoByCid" resultType="yiki.mybatis.bean.FirmInfo">
+       select * from firminfo where  cid =#{cid}
+   </select>
+
+    <select id="getAllFirmInfo" parameterType="map" resultType="map">
+         select * from firminfo ORDER BY cid DESC LIMIT 8
+    </select>
+
+    <!-- =======Firm======= -->
     <select id="getFirmById" resultType="yiki.mybatis.bean.Firm">
        select * from firm where  cid =#{cid}
    </select>
+
 
     <insert id="insertFirm"
             useGeneratedKeys="true" keyProperty="cid"
