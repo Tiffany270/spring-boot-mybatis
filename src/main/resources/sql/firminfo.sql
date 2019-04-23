@@ -1,0 +1,8 @@
+INSERT INTO `firminfo` VALUES (1, 'XXX科技有限公司', 'yiki270@foxmail.com', '183239849999', '广州', '途迅科技是一家初创型企业，我们专注互联网产品开发及服务，创始人是技术出身，曾在知名企业担任CTO职位，要学习技术的小伙伴，赶紧加入我们吧！', '电子', '>=50', 'hope u can join us');
+INSERT INTO `firminfo` VALUES (2, 'XXX有限公司', 'yiki270@foxmail.com', '183239849999', '广州', '途迅科技是一家初创型企业，我们专注互联网产品开发及服务，创始人是技术出身，曾在知名企业担任CTO职位，要学习技术的小伙伴，赶紧加入我们吧！', '互联网', '>=50', 'hope u can join us');
+INSERT INTO `firminfo` VALUES (3, 'XXX有限公司', 'yiki270@foxmail.com', '183239849999', '广州', '途迅科技是一家初创型企业，我们专注互联网产品开发及服务，创始人是技术出身，曾在知名企业担任CTO职位，要学习技术的小伙伴，赶紧加入我们吧！', '互联网', '>=50', 'hope u can join us');
+INSERT INTO `firminfo` VALUES (4, 'XXX有限公司', 'yiki270@foxmail.com', '183239849999', '广州', '途迅科技是一家初创型企业，我们专注互联网产品开发及服务，创始人是技术出身，曾在知名企业担任CTO职位，要学习技术的小伙伴，赶紧加入我们吧！', '互联网', '>=50', 'hope u can join us');
+INSERT INTO `firminfo` VALUES (5, 'XXX有限公司', 'yiki270@foxmail.com', '183239849999', '广州', '途迅科技是一家初创型企业，我们专注互联网产品开发及服务，创始人是技术出身，曾在知名企业担任CTO职位，要学习技术的小伙伴，赶紧加入我们吧！', '互联网', '>=50', 'hope u can join us');
+INSERT INTO `firminfo` VALUES (6, 'XXX有限公司', 'yiki270@foxmail.com', '183239849999', '广州', '途迅科技是一家初创型企业，我们专注互联网产品开发及服务，创始人是技术出身，曾在知名企业担任CTO职位，要学习技术的小伙伴，赶紧加入我们吧！', '互联网', '>=50', 'hope u can join us');
+INSERT INTO `firminfo` VALUES (7, 'XXX有限公司', 'yiki270@foxmail.com', '183239849999', '广州', '途迅科技是一家初创型企业，我们专注互联网产品开发及服务，创始人是技术出身，曾在知名企业担任CTO职位，要学习技术的小伙伴，赶紧加入我们吧！', '互联网', '>=50', 'hope u can join us');
+INSERT INTO `firminfo` VALUES (8, 'XXX有限公司', 'yiki270@foxmail.com', '183239849999', '广州', '途迅科技是一家初创型企业，我们专注互联网产品开发及服务，创始人是技术出身，曾在知名企业担任CTO职位，要学习技术的小伙伴，赶紧加入我们吧！', '互联网', '>=50', 'hope u can join us');

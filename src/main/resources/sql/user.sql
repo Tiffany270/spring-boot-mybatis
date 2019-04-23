@@ -1,0 +1,9 @@
+INSERT INTO `user` VALUES (1, 'yiki', 's', 's');
+INSERT INTO `user` VALUES (2, 'kkk', NULL, NULL);
+INSERT INTO `user` VALUES (3, 'yiki1', '1111', 'dddd');
+INSERT INTO `user` VALUES (4, 'tiffany2', '1111', 'dddd');
+INSERT INTO `user` VALUES (5, 'tiffany3', '1111', 'dddd');
+INSERT INTO `user` VALUES (6, 'tiffany4', '1111', 'dddd');
+INSERT INTO `user` VALUES (7, 'yiki', 'dddddd', 'ddddsgag');
+INSERT INTO `user` VALUES (8, 'yiki222222', NULL, 'ddddsgag');
+INSERT INTO `user` VALUES (9, 'q', 'q', 'q');
