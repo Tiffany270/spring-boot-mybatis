@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yiki.mybatis.bean.Firm;
 import yiki.mybatis.bean.FirmInfo;
+import yiki.mybatis.bean.JobDes;
 import yiki.mybatis.mapper.FirmMapper;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class FirmService {
     private FirmMapper firmMapper;
 
 
+    //----Firm info
     public boolean addFirmInfo(FirmInfo firmInfo) {
 
         try {
@@ -36,7 +38,9 @@ public class FirmService {
     }
 
 
+    //----Firm
     public boolean addFirm(Firm firm) {
+
         return firmMapper.insertFirm(firm);
     }
 
@@ -51,4 +55,23 @@ public class FirmService {
     public List<Map> getAllFirmInfoLimit() {
         return firmMapper.getAllFirmInfo();
     }
+
+    //----Firm JD
+    public boolean addJd(JobDes jobDes) {
+        return firmMapper.insertJD(jobDes);
+    }
+
+    public JobDes getJDbyJid(Integer jid) {
+        return firmMapper.getJDbyJid(jid);
+    }
+
+    public List<Map> getAllJD() {
+        return firmMapper.getAllJD();
+    }
+
+    public List<Map> getJDbyCid(Integer cid) {
+        return firmMapper.getJDbyCid(cid);
+    }
+
+
 }

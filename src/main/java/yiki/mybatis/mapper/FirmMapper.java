@@ -3,12 +3,21 @@ package yiki.mybatis.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import yiki.mybatis.bean.Firm;
 import yiki.mybatis.bean.FirmInfo;
+import yiki.mybatis.bean.JobDes;
 
 import java.util.List;
 import java.util.Map;
 
 @Mapper
 public interface FirmMapper {
+
+
+    //----Firm JD
+
+    public boolean insertJD(JobDes jobDes);
+    public List<Map> getAllJD();
+    public List<Map> getJDbyCid(Integer cid);
+    public JobDes getJDbyJid(Integer jid);
 
 
     //----Firm info
