@@ -2,10 +2,7 @@ package yiki.mybatis.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import yiki.mybatis.bean.Data;
-import yiki.mybatis.bean.Resume;
-import yiki.mybatis.bean.User;
-import yiki.mybatis.bean.WorkExp;
+import yiki.mybatis.bean.*;
 import yiki.mybatis.mapper.ResumeMapper;
 import yiki.mybatis.mapper.WorkExpMapper;
 import yiki.mybatis.util.JsonUtil;
@@ -22,6 +19,30 @@ public class ResumeService {
     private ResumeMapper resumeMapper;
     @Autowired
     private WorkExpMapper workExpMapper;
+
+    public boolean checkPost(Integer uid, Integer jid) {
+        Send checkRept = resumeMapper.getSendByUidAndJid(uid, jid);
+        if(checkRept!=null){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean Deliver(Send send) {
+
+        Send checkRept = resumeMapper.getSendByUidAndJid(send.getUid(), send.getJid());
+
+        if (checkRept != null) {
+            return false;
+        }
+
+        if (resumeMapper.deliver(send)) {
+            return true;
+        }
+        return false;
+
+    }
 
     public boolean AddResume(Map<String, Object> models) {
 
@@ -57,8 +78,8 @@ public class ResumeService {
 
         Resume resume = resumeMapper.getResumeByuid(uid);
 
-        map.put("workExps",wlist);
-        map.put("resume",resume);
+        map.put("workExps", wlist);
+        map.put("resume", resume);
 
         return map;
     }

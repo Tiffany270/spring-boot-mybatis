@@ -5,6 +5,19 @@
 <mapper namespace="yiki.mybatis.mapper.ResumeMapper">
 
 
+    <!--投递简历功能-->
+    <insert id="deliver"
+            keyProperty=""
+            parameterType="yiki.mybatis.bean.Send">
+    insert into send
+    (uid,cid,jid,replay)
+    values
+    (#{uid},#{cid},#{jid},#{replay})
+  </insert>
+    <!--查询重复投递-->
+    <select id="getSendByUidAndJid" resultType="yiki.mybatis.bean.Send">
+       select * from send where  uid =#{uid} and jid =#{jid}
+   </select>
 
     <!--根据用户ID查询-->
     <select id="getResumeByuid" resultType="yiki.mybatis.bean.Resume">

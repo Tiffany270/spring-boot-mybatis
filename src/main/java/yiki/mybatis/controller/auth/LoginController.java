@@ -32,10 +32,10 @@ public class LoginController {
 
     @PostMapping("/authUser")
     public User authUser(@RequestBody User user) {
-        System.out.println(user.getUname());
         User res = userService.authUser(user.getUname(), user.getUpassword());
         if (res != null) {
-            return user;
+
+            return res;
         }
         return null;
     }
