@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yiki.mybatis.mapper.SendMapper">
+
+
+
+    <!--查询投递表-->
+    <select id="getSendByCid" resultType="map">
+       select * from send where  cid =#{cid}
+   </select>
+    <!--查询投递表-->
+    <select id="getSendByUid" resultType="map">
+       select * from send where  uid =#{uid}
+   </select>
+
+    <!--更新-->
+    <update id="updateSendById">
+          update send set replay = #{replay} where id =  #{id}
+    </update>
+
+
+</mapper>

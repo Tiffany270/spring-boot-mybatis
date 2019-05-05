@@ -15,7 +15,7 @@ public class JobDes {
     private String must;        //职业要求
     private String hit;        //提示
     private String intv;        //面试地点
-    private String endDate;         //截至时间
+    private String endDate;     //截至时间
     private String relDate;     //发布时间
     private String cname;       //公司名称
 

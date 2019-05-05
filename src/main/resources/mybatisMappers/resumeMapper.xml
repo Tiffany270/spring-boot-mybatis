@@ -10,9 +10,9 @@
             keyProperty=""
             parameterType="yiki.mybatis.bean.Send">
     insert into send
-    (uid,cid,jid,replay)
+    (uid,uname,cid,jid,jname,replay)
     values
-    (#{uid},#{cid},#{jid},#{replay})
+    (#{uid},#{uname},#{cid},#{jid},#{jname},#{replay})
   </insert>
     <!--查询重复投递-->
     <select id="getSendByUidAndJid" resultType="yiki.mybatis.bean.Send">
