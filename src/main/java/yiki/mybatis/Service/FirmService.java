@@ -41,6 +41,10 @@ public class FirmService {
     //----Firm
     public boolean addFirm(Firm firm) {
 
+        Firm check = firmMapper.getFirmByName(firm.getCname());
+        if (check!=null){
+            return false;
+        }
         return firmMapper.insertFirm(firm);
     }
 

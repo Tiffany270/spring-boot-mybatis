@@ -11,6 +11,11 @@
        select * from user where  uid =#{uid}
    </select>
 
+    <!--根据用户名查询-->
+    <select id="getUserByName" resultType="yiki.mybatis.bean.User">
+       select * from user where  uname =#{uname}
+   </select>
+
     <!--新增用户-->
     <insert id="insertUser"
             useGeneratedKeys="true" keyProperty="uid"

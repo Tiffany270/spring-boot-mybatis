@@ -12,6 +12,9 @@ public interface UserYmlMapper {
 
     public User getUserById(Integer uid);
 
+    public User getUserByName(String uname);
+
+
     public boolean insertUser(User user);
 
     public List<User> getUsers();

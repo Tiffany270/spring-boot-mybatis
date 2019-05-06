@@ -30,6 +30,8 @@ public interface FirmMapper {
 
     //------- Firm
     public Firm getFirmById(Integer cid);
+    public Firm getFirmByName(String cname);
+
 
     public boolean insertFirm(Firm firm);
 

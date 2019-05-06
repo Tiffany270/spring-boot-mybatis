@@ -46,6 +46,10 @@
        select * from firm where  cid =#{cid}
    </select>
 
+    <select id="getFirmByName" resultType="yiki.mybatis.bean.Firm">
+       select * from firm where  cname =#{cname}
+   </select>
+
 
     <insert id="insertFirm"
             useGeneratedKeys="true" keyProperty="cid"

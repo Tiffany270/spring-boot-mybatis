@@ -22,6 +22,10 @@ public class RegisteController {
     //注册用户（求职）
     @PostMapping("/user")
     public int registeUser(@RequestBody User user) {
+
+
+
+
         boolean res = userService.addUser(user);
         if (res) {
             return 1;

@@ -12,6 +12,11 @@ public class UserService {
     private UserYmlMapper usermapper;
 
     public boolean addUser(User user) {
+        User check = usermapper.getUserByName(user.getUname());
+        if (check!=null){
+            return false;
+        }
+
         return usermapper.insertUser(user);
     }
 
