@@ -24,6 +24,11 @@
          select * from JobDes ORDER BY cid DESC LIMIT 8
     </select>
 
+    <!--模糊查询-->
+    <select id="getJDListByKey" resultType="map" parameterType="map">
+        select * from jobdes where concat(tab,type,cname,location) like CONCAT('%',#{key},'%')
+    </select>
+
 
     <!-- =====Firm info====== -->
     <insert id="insertFirmInfo"

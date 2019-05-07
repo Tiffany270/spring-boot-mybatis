@@ -20,4 +20,16 @@
     (#{uid},#{name},#{type},#{ocp},#{dep},#{opcDate},#{text})
   </insert>
 
+    <!--更新操作-->
+    <update id="updateWorkExp" parameterType="yiki.mybatis.bean.WorkExp">
+        UPDATE  workExp
+        SET     workExp.name = #{name},
+                workExp.type = #{type},
+                workExp.ocp = #{ocp},
+                workExp.dep = #{dep},
+                workExp.opcDate = #{opcDate},
+                workExp.text = #{text}
+        WHERE   workExp.id = #{id};
+</update>
+
 </mapper>

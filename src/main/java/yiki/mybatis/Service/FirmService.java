@@ -37,6 +37,9 @@ public class FirmService {
         return firmMapper.getFirmInfoByCid(cid);
     }
 
+    public List<Map> getJDbyKey(String key){
+        return firmMapper.getJDListByKey(key);
+    }
 
     //----Firm
     public boolean addFirm(Firm firm) {

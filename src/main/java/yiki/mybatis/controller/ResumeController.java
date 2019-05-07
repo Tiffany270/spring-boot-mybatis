@@ -28,6 +28,14 @@ public class ResumeController {
         return 0;
     }
 
+    @PostMapping("/updateResume")
+    public int updateResume(@RequestBody Map<String, Object> models) {
+        if(resumeService.updateResume(models)){
+            return 1;
+        }
+        return 0;
+    }
+
     @GetMapping("/resume/{uid}")
     public Map<String, Object> getResumeByUid(@PathVariable("uid") Integer uid) {
         return resumeService.getResume(uid);
@@ -43,11 +51,11 @@ public class ResumeController {
     }
 
     @PostMapping("/checkPost")
-    public int send(@RequestBody Map<String,Object> req) {
-        Integer uid,jid;
-        uid = (Integer)req.get("uid");
-        jid = (Integer)req.get("jid");
-        boolean res = resumeService.checkPost(uid,jid);
+    public int send(@RequestBody Map<String, Object> req) {
+        Integer uid, jid;
+        uid = (Integer) req.get("uid");
+        jid = (Integer) req.get("jid");
+        boolean res = resumeService.checkPost(uid, jid);
         System.out.println(res);
         if (res) {
             return 1;

@@ -10,6 +10,10 @@ import java.util.Map;
 public interface WorkExpMapper {
     public boolean insertWorkExp(WorkExp workExp);
 
+    public void updateWorkExp(WorkExp workExp);
+
     public List<Map> getWorkExpByUid(Integer uid);
+
+
 
 }

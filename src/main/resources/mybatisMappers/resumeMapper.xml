@@ -33,4 +33,22 @@
     (#{uid},#{name},#{email},#{phone},#{region},#{school},#{degree},#{age},#{self},#{occupation},#{type},#{status},#{pay})
   </insert>
 
+    <!--更新操作-->
+    <update id="updateResume" parameterType="yiki.mybatis.bean.Resume">
+        UPDATE resume
+            SET resume.name = #{name},
+                resume.email = #{email},
+                resume.phone = #{phone},
+                resume.region = #{region},
+                resume.school = #{school},
+                resume.degree = #{degree},
+                resume.age = #{age},
+                resume.self = #{self},
+                resume.occupation = #{occupation},
+                resume.type = #{type},
+                resume.status = #{status},
+                resume.pay = #{pay}
+         WHERE  resume.uid = #{uid};
+</update>
+
 </mapper>

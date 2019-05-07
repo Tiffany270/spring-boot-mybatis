@@ -66,4 +66,10 @@ public class FirmController {
     public List<Map> getAllFirmInfo(){
        return firmService.getAllFirmInfoLimit();
     }
+
+    @GetMapping("/job/{key}")
+    public List<Map> getJDbyKey(@PathVariable("key") String key){
+        System.out.println(key);
+        return  firmService.getJDbyKey(key);
+    }
 }

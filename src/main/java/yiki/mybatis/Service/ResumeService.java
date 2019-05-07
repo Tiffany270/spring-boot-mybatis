@@ -22,9 +22,9 @@ public class ResumeService {
 
     public boolean checkPost(Integer uid, Integer jid) {
         Send checkRept = resumeMapper.getSendByUidAndJid(uid, jid);
-        if(checkRept!=null){
+        if (checkRept != null) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -43,6 +43,31 @@ public class ResumeService {
         return false;
 
     }
+
+
+    public boolean updateResume(Map<String, Object> models) {
+        try {
+
+            Map<String, Object> resumeobj =
+                    (Map<String, Object>) models.get("resume");
+            ArrayList<Map<String, Object>> workExpList =
+                    (ArrayList<Map<String, Object>>) models.get("workExps");
+
+            Resume resume = JsonUtil.map2obj(resumeobj, Resume.class);
+            resumeMapper.updateResume(resume);
+
+            for (Map<String, Object> item : workExpList) {
+                WorkExp workExp = JsonUtil.map2obj(item, WorkExp.class);
+                workExpMapper.updateWorkExp(workExp);
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return false;
+    }
+
 
     public boolean AddResume(Map<String, Object> models) {
 

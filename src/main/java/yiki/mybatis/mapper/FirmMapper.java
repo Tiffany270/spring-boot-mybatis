@@ -15,9 +15,14 @@ public interface FirmMapper {
     //----Firm JD
 
     public boolean insertJD(JobDes jobDes);
+
     public List<Map> getAllJD();
+
     public List<Map> getJDbyCid(Integer cid);
+
     public JobDes getJDbyJid(Integer jid);
+
+    public List<Map> getJDListByKey(String key);
 
 
     //----Firm info
@@ -30,6 +35,7 @@ public interface FirmMapper {
 
     //------- Firm
     public Firm getFirmById(Integer cid);
+
     public Firm getFirmByName(String cname);
 
 
