@@ -34,3 +34,6 @@ spring:
 mybatis:
   config-location: classpath:mybatisConfig.xml
   mapper-locations: classpath:mybatisMappers/*.xml
+
+server:
+    port: 9688

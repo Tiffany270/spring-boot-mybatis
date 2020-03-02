@@ -8,10 +8,13 @@
         <version>2.1.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+
     <groupId>yiki.springboot</groupId>
-    <artifactId>spring-boot-mybatis</artifactId>
+    <artifactId>yikispringboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-mybatis</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
