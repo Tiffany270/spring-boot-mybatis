@@ -8,20 +8,20 @@
     <insert id="insertJD"
             keyProperty="cid"
             parameterType="yiki.mybatis.bean.JobDes">
-    insert into JobDes(cid,opc,tab,pay,location,exp,degree,type,attr,intro,must,hit,intv,endDate,relDate,cname)
+    insert into jobdes(cid,opc,tab,pay,location,exp,degree,type,attr,intro,must,hit,intv,endDate,relDate,cname)
     values(#{cid},#{opc},#{tab},#{pay},#{location},#{exp},#{degree},#{type},#{attr},#{intro},#{must},#{hit},#{intv},#{endDate},#{relDate},#{cname})
   </insert>
 
     <select id="getJDbyCid" parameterType="map" resultType="map">
-       select * from JobDes where  cid =#{cid}
+       select * from jobdes where  cid =#{cid}
    </select>
 
     <select id="getJDbyJid" resultType="yiki.mybatis.bean.JobDes">
-       select * from JobDes where  jid =#{jid}
+       select * from jobdes where  jid =#{jid}
    </select>
 
     <select id="getAllJD" parameterType="map" resultType="map">
-         select * from JobDes ORDER BY cid DESC LIMIT 8
+         select * from jobdes ORDER BY cid DESC LIMIT 8
     </select>
 
     <!--模糊查询-->

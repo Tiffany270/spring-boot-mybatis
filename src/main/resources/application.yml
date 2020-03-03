@@ -1,8 +1,8 @@
 spring:
   datasource:
     username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT
+    password: 123456
+    url: jdbc:mysql://104.168.219.187:3306/mybatis?serverTimezone=GMT
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     # 下面为连接池的补充设置，应用到上面所有数据源中
