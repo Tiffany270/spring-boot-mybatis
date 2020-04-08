@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yiki.mybatis.mapper.UserMapper_react">
+
+
+
+
+    <!--新增用户-->
+    <insert id="insertUser"
+            keyProperty="userid"
+            parameterType="yiki.mybatis.react_app_bean.UserSchema">
+    insert into react_user(userid, username,userpsw,usertype,userheader)
+    values(#{userid}, #{username},#{userpsw},#{usertype}, #{userheader})
+  </insert>
+
+
+
+</mapper>

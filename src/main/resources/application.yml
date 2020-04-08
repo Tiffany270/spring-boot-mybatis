@@ -1,8 +1,8 @@
 spring:
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://104.168.219.187:3306/mybatis?serverTimezone=GMT
+    password:
+    url: jdbc:mysql://192.168.29.1:3306/mybatis?serverTimezone=GMT
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -37,3 +37,11 @@ mybatis:
 
 server:
     port: 9688
+    #证书的路径.
+    ssl.key-store: classpath:keystore.p12
+    #证书密码，请修改为您自己证书的密码.
+    ssl.key-store-password: yiki123456
+    #秘钥库类型
+    ssl.keyStoreType: PKCS12
+    #证书别名
+    ssl.keyAlias: tomcat
