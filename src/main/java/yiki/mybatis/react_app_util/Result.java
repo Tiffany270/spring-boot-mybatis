@@ -24,7 +24,7 @@ public class Result<T> {
     }
 
     public Result(T result) {
-        this.status = 0227;
+        this.status = 227;
         this.msg = "ok";
         this.data = result;
         this.success = true;

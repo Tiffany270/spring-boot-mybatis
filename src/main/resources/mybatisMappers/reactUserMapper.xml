@@ -16,5 +16,37 @@
   </insert>
 
 
+    <!--匹配用户名和密码-->
+    <select id="getUserByNameAndPassword" resultType="yiki.mybatis.react_app_bean.UserSchema">
+       select * from react_user where username=#{uname} and userpsw=#{upsw}
+   </select>
+
+    <!--根据名字匹配-->
+    <select id="getUserByName" resultType="yiki.mybatis.react_app_bean.UserSchema">
+       select * from react_user where username=#{uname}
+   </select>
+
+    <!--更新操作-->
+    <update id="updateUser" parameterType="yiki.mybatis.react_app_bean.UserSchema">
+        UPDATE react_user
+            SET react_user.intro = #{intro},
+                react_user.salary = #{salary},
+                react_user.company = #{company},
+                react_user.occupation = #{occupation},
+                react_user.userheader = #{userheader}
+         WHERE  react_user.userid = #{userid};
+</update>
+
+    <!--获取所有-->
+
+
+    <select id="getAllUserList" parameterType="map" resultType="map">
+         select * from react_user
+    </select>
+
+    <select id="getAllUserListByType" parameterType="map" resultType="map">
+         select * from react_user WHERE react_user.usertype = #{type};
+    </select>
+
 
 </mapper>

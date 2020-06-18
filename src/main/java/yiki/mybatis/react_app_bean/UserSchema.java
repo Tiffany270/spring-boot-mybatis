@@ -9,8 +9,14 @@ public class UserSchema {
     private String username;
     private String userpsw;
     private String usertype;
+    private String intro;
+    private String salary;
+    private String company;
+    private String occupation;
     private String userheader; // 头像
-    private String salt = "yiki";
+
+    public UserSchema() {
+    }
 
     @Override
     public String toString() {
@@ -20,13 +26,7 @@ public class UserSchema {
                 ", userpsw='" + userpsw + '\'' +
                 ", usertype='" + usertype + '\'' +
                 ", userheader='" + userheader + '\'' +
-                ", salt='" + salt + '\'' +
                 '}';
-    }
-
-    public String getUserid() {
-
-        return this.userid;
     }
 
     public UserSchema(String username,
@@ -34,27 +34,19 @@ public class UserSchema {
                       String usertype,
                       String userheader) {
 
-        this.setUserid("auto create");
         this.username = username;
-        this.setUserpsw(userpsw);
+        this.userpsw = userpsw;
         this.usertype = usertype;
         this.userheader = userheader;
     }
 
-    // 随机生成UUID
+
+    public String getUserid() {
+        return userid;
+    }
+
     public void setUserid(String userid) {
-        UUID uuid = UUID.randomUUID();
-        String id = uuid.toString();
-        String[] ids = id.split("-");
-        this.userid = (ids[0] + ids[1]).toUpperCase();
-    }
-
-    public String getUserheader() {
-        return userheader;
-    }
-
-    public void setUserheader(String userheader) {
-        this.userheader = userheader;
+        this.userid = userid;
     }
 
     public String getUsername() {
@@ -69,13 +61,8 @@ public class UserSchema {
         return userpsw;
     }
 
-    // md5加密
     public void setUserpsw(String userpsw) {
-
-        String saltPassword = salt + "/" + userpsw;
-        String md5Password = DigestUtils.md5DigestAsHex(saltPassword.getBytes());
-        this.userpsw = md5Password;
-
+        this.userpsw = userpsw;
     }
 
     public String getUsertype() {
@@ -84,5 +71,45 @@ public class UserSchema {
 
     public void setUsertype(String usertype) {
         this.usertype = usertype;
+    }
+
+    public String getUserheader() {
+        return userheader;
+    }
+
+    public void setUserheader(String userheader) {
+        this.userheader = userheader;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 }
