@@ -1,5 +1,12 @@
-# springboot-招聘求职网站/系统后端
+# springboot系统后端
 
-> springboot+mybatis+restful
+> - 毕设招聘求职网站的后端
+> - 个人项目的后端
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 目前混合的技术
+- netty
+- springboot
+- mybatis
+- restful
+
+
