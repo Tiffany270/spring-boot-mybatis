@@ -17,7 +17,7 @@ public class SpringBootMybatisApplication {
 
 //        BIOserver.startBIO();
 //        NIOserver.scattering_gathering();
-        NIOserver.NIOserve();
+//        NIOserver.NIOserve();
 
 
     }
