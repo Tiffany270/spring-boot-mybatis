@@ -8,13 +8,13 @@ import java.net.InetSocketAddress;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Set;
 
 /*
-        Non blocking IO
+        Non-blocking IO
         同步非阻塞, for BLOCK to handle data
 
                 - tread             - tread
@@ -85,9 +85,23 @@ public class NIOserver {
 
     }
 
+    //what's selector
+    public void basicSelector() {
+    /* NIO
+        client->
+        serverSocketChannel->
+        socketChannel->register to selector
+        ->return selectionKey
+        -> selector would listening select func
+        -> return channel number of events that happened
+    */
+
+
+    }
+
 
     //Scattering: use buffer array write in order
-    //Gathering: read data from buffer, use buffer array read in order
+    //Gathering: read data from the buffer, use buffer array read in order
     public static void scattering_gathering() throws Exception {
 
         ServerSocketChannel channel = ServerSocketChannel.open();
@@ -99,12 +113,11 @@ public class NIOserver {
         System.out.println("serve started");
 
 
-
         ByteBuffer[] byteBuffer = new ByteBuffer[2];
         byteBuffer[0] = ByteBuffer.allocate(5);
         byteBuffer[1] = ByteBuffer.allocate(3);
 
-        //waiting for client to connect
+        //waiting for the client to connect
         SocketChannel socketChannel = channel.accept();
 
         int msgLen = 8;// limit client data is 8 bytes
@@ -144,12 +157,73 @@ public class NIOserver {
                 });
 
 
-
             }
         }
 
 
     }
 
+    public static void NIOserve() throws Exception {
+
+        //create serverSocketChannel
+        ServerSocketChannel channel = ServerSocketChannel.open();
+
+        // get a selector obj
+        Selector selector = Selector.open();
+
+        //bind a port
+        channel.socket().bind(new InetSocketAddress(6666));
+        // set to no-blocking module
+        channel.configureBlocking(false);
+
+        System.out.println("NIO Service started");
+
+        //register 'channel' to selector, OP_ACCEPT
+        channel.register(selector, SelectionKey.OP_ACCEPT);
+
+        // loop for listening, waiting for client's connection
+        while (true) {
+            if (selector.select(1000) == 0) {
+                System.out.println("passed 1s, no connection");
+                continue;//not to block the thread
+            }
+
+            // >0 => selectionKey sets =>
+            Set<SelectionKey> selectionKeys = selector.selectedKeys();
+            Iterator<SelectionKey> iterator = selectionKeys.iterator();
+            while (iterator.hasNext()) {
+                SelectionKey key = iterator.next();
+                if (key.isAcceptable()) {// mean has a new client's connection
+                    // create a new socketChannel for this client
+                    SocketChannel newChannel = channel.accept();
+
+                    System.out.println("accept...");
+
+                    // no-block module
+                    newChannel.configureBlocking(false);
+
+                    // register this newChannel to selector, and connected it to an buffer
+                    newChannel.register(selector,
+                                    SelectionKey.OP_READ,
+                                    ByteBuffer.allocate(1024)
+                    );
+                }
+                if (key.isReadable()) {//OP_READ
+                    SocketChannel channel1 = (SocketChannel) key.channel();
+                    ByteBuffer buffer = (ByteBuffer) key.attachment();//is a buffer
+                    // read it
+                    channel1.read(buffer);
+                    System.out.println("from client: " + new String(buffer.array()));
+                }
+
+                // remove current key from set, avoid has repeat operation
+                iterator.remove();
+
+            }
+
+
+        }
+
+    }
 
 }
