@@ -59,7 +59,7 @@ public class HelloController {
     @PostMapping("/test")
     public int test(@RequestBody Map<String, Object> models) {
         Map<String, Object> userobj = (Map<String, Object>) models.get("user");
-        ArrayList<Map<String, Object>> test = (ArrayList<Map<String, Object>>) models.get("test");
+        ArrayList<Map<String, Object>> test = (ArrayList<Map<String, Object>>) models.get("groupChatSystem");
 
 
         try {
