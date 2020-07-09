@@ -2,6 +2,8 @@ package yiki.mybatis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import yiki.mybatis.netty_learn.basic.NIOserver;
+import yiki.mybatis.netty_learn.groupChatSystem.GroupChatServer;
 
 @SpringBootApplication
 public class SpringBootMybatisApplication {
@@ -11,12 +13,10 @@ public class SpringBootMybatisApplication {
 
 
         // ---- IO ---  相关
-
-
 //        BIOserver.startBIO();
 //        NIOserver.scattering_gathering();
-//        NIOserver.GruopChatServer();
-
+//        NIOserver.NIOserve();
+//        GroupChatServer.startServer();
 
     }
 
