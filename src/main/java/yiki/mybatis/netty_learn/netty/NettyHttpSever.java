@@ -13,6 +13,7 @@ public class NettyHttpSever {
         EventLoopGroup workGroup = new NioEventLoopGroup();
 
         try {
+            // bootstrap is for configuration of all sever, as a guider
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)

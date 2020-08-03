@@ -7,6 +7,8 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 
+import java.net.URI;
+
 public class NettyHttpSeverHandler extends SimpleChannelInboundHandler<HttpObject> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx,
@@ -14,6 +16,14 @@ public class NettyHttpSeverHandler extends SimpleChannelInboundHandler<HttpObjec
         System.out.println(httpObject);
         if (httpObject instanceof HttpRequest) {
             System.out.println("add: " + ctx.channel().remoteAddress());
+
+            //filter
+            HttpRequest httpRequest = (HttpRequest) httpObject;
+            URI uri = new URI(httpRequest.uri());
+            if ("/favicon.ico".equals(uri.getPath())) {
+                System.out.println("no data return");
+                return;
+            }
 
             ByteBuf reply = Unpooled.copiedBuffer("hi, I am sever", CharsetUtil.UTF_8);
             FullHttpResponse res = new DefaultFullHttpResponse(
