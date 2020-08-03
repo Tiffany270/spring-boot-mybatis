@@ -6,6 +6,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
+import java.util.concurrent.TimeUnit;
+
 /*
  * NOTE:
  * */
@@ -17,15 +19,45 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 
         // transfer msg to ByteBuf
         ByteBuf buf = (ByteBuf) msg;
-        System.out.println("from server: " + buf.toString(CharsetUtil.UTF_8));
-        System.out.println("server add: " + ctx.channel().remoteAddress());
+        System.out.println("from client: " + buf.toString(CharsetUtil.UTF_8));
+        System.out.println("client add:" + ctx.channel().remoteAddress());
+
+        // ##s1: customer common task
+//        ctx.channel().eventLoop().execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    // do sth...
+//                }catch (Exception e){
+//                    System.out.println(e);
+//                }
+//            }
+//        });
+
+        //##s2 customer set own timer
+//        ctx.channel().eventLoop().schedule(new Runnable() {
+//            @Override
+//            public void run() {
+//                try{
+//                    // do sth...
+//                }catch (Exception e){
+//
+//                }
+//            }
+//        },5, TimeUnit.SECONDS);
+
+
+
+
+
+
     }
 
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         // msg push-> channel(not pipe)
-        ctx.writeAndFlush(Unpooled.copiedBuffer("hello", CharsetUtil.UTF_8));
+        ctx.writeAndFlush(Unpooled.copiedBuffer("hello, client", CharsetUtil.UTF_8));
 
     }
 
