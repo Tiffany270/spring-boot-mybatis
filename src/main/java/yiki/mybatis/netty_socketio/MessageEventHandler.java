@@ -2,11 +2,9 @@ package yiki.mybatis.netty_socketio;
 
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
-import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
 import com.corundumstudio.socketio.annotation.OnEvent;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,8 +12,7 @@ import java.util.concurrent.ConcurrentMap;
 
 @Component
 public class MessageEventHandler {
-    @Autowired
-    private SocketIOServer socketIoServer;
+
 
     public static ConcurrentMap<String, SocketIOClient> socketIOClientMap =
             new ConcurrentHashMap<>();
