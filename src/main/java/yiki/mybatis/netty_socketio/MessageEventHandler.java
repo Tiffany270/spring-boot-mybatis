@@ -24,12 +24,13 @@ public class MessageEventHandler {
      */
     @OnConnect
     public void onConnect(SocketIOClient client) {
-        String mac = client.getHandshakeData().getSingleUrlParam("mac");
+//        String mac = client.getHandshakeData().getSingleUrlParam("mac");
         //存储SocketIOClient，用于发送消息
-        socketIOClientMap.put(mac, client);
+//        socketIOClientMap.put(mac, client);
         //回发消息
         client.sendEvent("message", "onConnect back");
-        System.out.println("客户端:" + client.getSessionId() + "已连接,mac=" + mac);
+//        System.out.println("客户端:" + client.getSessionId() + "已连接,mac=" + mac);
+        System.out.println("客户端:" + client.getSessionId() + "已连接");
     }
 
     /**
@@ -67,5 +68,15 @@ public class MessageEventHandler {
             }
         }
 
+    }
+
+
+    //react-client
+    @OnEvent(value = "sendMsg")
+    public void react_onEvent(SocketIOClient client, AckRequest request, Message data) {
+        //回发消息
+        client.sendEvent("receveMsg", data);
+        //广播消息
+        sendBroadcast();
     }
 }

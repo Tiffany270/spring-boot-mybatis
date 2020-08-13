@@ -80,7 +80,7 @@ public class UserController {
             List<UserSchema> list = userMapper_react.getAllUserList();
             if (list != null) {
                 return Result.ok(list);
-            }else {
+            } else {
                 return Result.error(500, "查询失败");
             }
 
@@ -94,16 +94,16 @@ public class UserController {
     @GetMapping("/userList/{type}")
     public Result getAllUserListByType(@PathVariable("type") int usertype) {
         String userType = "招聘";
-        if( usertype==1){
-            userType="招聘";
-        }else {
-            userType="应聘";
+        if (usertype == 1) {
+            userType = "招聘";
+        } else {
+            userType = "应聘";
         }
         try {
             List<UserSchema> list = userMapper_react.getAllUserListByType(userType);
             if (list != null) {
                 return Result.ok(list);
-            }else {
+            } else {
                 return Result.error(500, "查询失败");
             }
 
@@ -111,6 +111,15 @@ public class UserController {
             return Result.error(500, "数据库异常:  " + e.getCause());
 
         }
+    }
+
+
+    // Chat 获取信息列表/存数据库，和即时通信无关？
+    @GetMapping("/msgList/{id}")
+    public Result getMsgListByid(@PathVariable("id") int id) {
+
+        return null;
+
     }
 
     @PostMapping("/test")

@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: 9622738
-    url: jdbc:mysql://139.180.190.100:3306/mybatis?serverTimezone=GMT&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT&useUnicode=true&characterEncoding=utf8
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -25,12 +25,22 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙，此处是filter修改的地方
     filters:
-      commons-log.connection-logger-name: stat,wall,log4j
+    commons-log.connection-logger-name: stat,wall,log4j
     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     # 合并多个DruidDataSource的监控数据
     useGlobalDataSourceStat: true
 
+
+  redis:
+    host: localhost
+    #host: 149.248.19.225
+    # Redis服务器连接端口
+    port: 6379
+    # 连接超时时间（毫秒）
+    timeout: 6000
+    #默认是索引为0的数据库
+    database: 0
 mybatis:
   config-location: classpath:mybatisConfig.xml
   mapper-locations: classpath:mybatisMappers/*.xml
