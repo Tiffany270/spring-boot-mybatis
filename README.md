@@ -8,5 +8,6 @@
 - springboot
 - mybatis
 - restful
+- redis
 
 

@@ -33,8 +33,8 @@ spring:
 
 
   redis:
-    host: localhost
-    #host: 149.248.19.225
+    #host: localhost
+    host: 149.248.19.225
     # Redis服务器连接端口
     port: 6379
     # 连接超时时间（毫秒）
