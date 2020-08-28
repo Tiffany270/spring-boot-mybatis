@@ -4,10 +4,12 @@
 > - 个人项目的后端
 
 ## 目前混合的技术
-- netty
-- springboot
+- netty(for chats multiple thread)
+- springboot(main)
 - mybatis
 - restful
-- redis
+- mysql(for logic codes)
+- redis(for token)
+- mongodb(for chats store)
 
 

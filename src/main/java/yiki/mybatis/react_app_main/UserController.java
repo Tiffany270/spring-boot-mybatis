@@ -1,4 +1,4 @@
-package yiki.mybatis.react_app_controller;
+package yiki.mybatis.react_app_main;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

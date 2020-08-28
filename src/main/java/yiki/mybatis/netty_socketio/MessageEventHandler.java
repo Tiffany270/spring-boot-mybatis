@@ -5,7 +5,9 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
 import com.corundumstudio.socketio.annotation.OnEvent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import yiki.mybatis.react_app_main.ChatService;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -16,6 +18,23 @@ public class MessageEventHandler {
 
     public static ConcurrentMap<String, SocketIOClient> socketIOClientMap =
             new ConcurrentHashMap<>();
+
+    @Autowired
+    private  ChatService chatService;
+
+
+
+    //react-client
+    @OnEvent(value = "sendMsg")
+    public void react_onEvent(SocketIOClient client, AckRequest request, Message data) {
+        //回发消息
+        chatService.storeMsg(data);
+        client.sendEvent("receveMsg", data);
+        //广播消息
+        sendBroadcast();
+    }
+
+
 
     /**
      * 客户端连接的时候触发
@@ -71,12 +90,5 @@ public class MessageEventHandler {
     }
 
 
-    //react-client
-    @OnEvent(value = "sendMsg")
-    public void react_onEvent(SocketIOClient client, AckRequest request, Message data) {
-        //回发消息
-        client.sendEvent("receveMsg", data);
-        //广播消息
-        sendBroadcast();
-    }
+
 }

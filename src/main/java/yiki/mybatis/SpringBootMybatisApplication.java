@@ -1,19 +1,17 @@
 package yiki.mybatis;
 
 import com.corundumstudio.socketio.SocketIOServer;
-import com.corundumstudio.socketio.annotation.SpringAnnotationScanner;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import yiki.mybatis.netty_learn.basic.NIOserver;
-import yiki.mybatis.netty_learn.groupChatSystem.GroupChatServer;
-import yiki.mybatis.netty_learn.netty.NettyClient;
-import yiki.mybatis.netty_learn.netty.NettyHttpSever;
-import yiki.mybatis.netty_learn.netty.NettyServer;
-import yiki.mybatis.netty_socketio.Netty_SocketIo_Sever;
+import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import yiki.mybatis.util.MongodbUtil;
 
-@SpringBootApplication
+// 要禁止掉mongo默认的config
+@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 public class SpringBootMybatisApplication {
 
     @Autowired
@@ -35,6 +33,10 @@ public class SpringBootMybatisApplication {
 //        NettyHttpSever.start();// use 浏览器：http://localhost:9797/
 
         //netty-socketio
+
+        MongoDatabase mongoDatabase = MongodbUtil.mongoGetConnect();
+        MongoCollection collection = mongoDatabase.getCollection("user");
+        System.out.println("test" + collection);
 
     }
 
