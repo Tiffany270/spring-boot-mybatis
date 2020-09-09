@@ -33,10 +33,10 @@ public class SpringBootMybatisApplication {
 //        NettyHttpSever.start();// use 浏览器：http://localhost:9797/
 
         //netty-socketio
-
-        MongoDatabase mongoDatabase = MongodbUtil.mongoGetConnect();
-        MongoCollection collection = mongoDatabase.getCollection("user");
-        System.out.println("test" + collection);
+//
+//        MongoDatabase mongoDatabase = MongodbUtil.mongoGetConnect();
+//        MongoCollection collection = mongoDatabase.getCollection("user");
+//        System.out.println("test" + collection);
 
     }
 
