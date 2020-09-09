@@ -12,7 +12,7 @@ public class NettySocketioConfig {
     public SocketIOServer socketIOServer(){
         com.corundumstudio.socketio.Configuration config =
                 new com.corundumstudio.socketio.Configuration();
-        config.setHostname("localhost");
+        config.setHostname("localhost");//挂上服务器记得改Ip
         config.setPort(9092);
 
         SocketIOServer server = new SocketIOServer(config);

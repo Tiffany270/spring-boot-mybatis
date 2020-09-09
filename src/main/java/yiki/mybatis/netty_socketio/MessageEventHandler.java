@@ -28,7 +28,7 @@ public class MessageEventHandler {
     @OnEvent(value = "sendMsg")
     public void react_onEvent(SocketIOClient client, AckRequest request, Message data) {
         //回发消息
-        chatService.storeMsg(data);
+//        chatService.storeMsg(data);
         client.sendEvent("receveMsg", data);
         //广播消息
         sendBroadcast();
