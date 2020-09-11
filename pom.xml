@@ -54,6 +54,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+            <!--解决JSON ObJ冲突-->
             <exclusions>
                 <exclusion>
                     <groupId>com.vaadin.external.google</groupId>

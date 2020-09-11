@@ -1,6 +1,8 @@
 package yiki.mybatis.react_app_main;
 
 import com.corundumstudio.socketio.store.pubsub.PubSubListener;
+import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -9,6 +11,7 @@ import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -18,18 +21,13 @@ import yiki.mybatis.util.BsonUtil;
 import yiki.mybatis.util.JedisPoolUtil;
 import yiki.mybatis.util.MongodbUtil;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ChatService {
-     /*
-    from:string
-    to:string
-    char_id:from+to
-    content:string
-    read:boolean
-    create_time:date
 
-    // 干脆直接变成jason算了
-    * */
 
     // redis不适合保存聊天记录，已放弃fine :)
     public void storeMsg(Message message) {
@@ -49,12 +47,12 @@ public class ChatService {
     }
 
     /*   换成mongodb吧
-  from:string
-  to:string
-  char_id:from+to
-  content:string
-  read:boolean
-  create_time:date
+                          from:string
+                          to:string
+                          char_id:from+to
+                          content:string
+                          read:boolean
+                          create_time:date
 
 
   users:{
@@ -94,15 +92,35 @@ public class ChatService {
 
     public void postMsg(ChatSchema chat) {
         MongoDatabase mongoDatabase = MongodbUtil.mongoGetConnect();
+
         MongoCollection<Document> collection = mongoDatabase.getCollection("chatList");
         Document document = BsonUtil.toDocument(chat);
         collection.insertOne(document);
 
-        FindIterable findIterable = collection.find();
+    }
+
+
+    public List getRecordsByUserId(String ChatId) {
+        MongoDatabase mongoDatabase = MongodbUtil.mongoGetConnect();
+        MongoCollection<Document> collection = mongoDatabase.getCollection("chatList");
+        String[] chatQuery = ChatId.split("_");
+        String chatId1 = chatQuery[0] + "_" + chatQuery[1];
+        String chatId2 = chatQuery[1] + "_" + chatQuery[0];
+
+
+        BasicDBObject queryCondition = new BasicDBObject();
+        BasicDBList values = new BasicDBList();
+        values.add(new BasicDBObject("chat_id", chatId1));
+        values.add(new BasicDBObject("chat_id", chatId2));
+        queryCondition.put("$or", values);
+
+        FindIterable findIterable = collection.find(queryCondition);
         MongoCursor cursor = findIterable.iterator();
+        ArrayList<Object> res = new ArrayList<>();
         while (cursor.hasNext()) {
-            System.out.println(cursor.next());
+            res.add(cursor.next());
         }
+        return res;
     }
 
 }

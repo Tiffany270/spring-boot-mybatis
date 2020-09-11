@@ -7,7 +7,7 @@ public class ChatSchema {
     private String chat_id;
     private String content;
     private Boolean read;
-    private Integer create_time;
+    private Long create_time;
 
     @Override
     public String toString() {
@@ -21,21 +21,16 @@ public class ChatSchema {
                 '}';
     }
 
-    public ChatSchema() {
-    }
-
-    public ChatSchema(String from,
-                      String to,
-                      String chat_id,
-                      String content,
-                      Boolean read,
-                      Integer create_time) {
+    public ChatSchema(String from, String to, String chat_id, String content, Boolean read, Long create_time) {
         this.from = from;
         this.to = to;
         this.chat_id = chat_id;
         this.content = content;
         this.read = read;
         this.create_time = create_time;
+    }
+
+    public ChatSchema() {
     }
 
     public String getFrom() {
@@ -78,11 +73,11 @@ public class ChatSchema {
         this.read = read;
     }
 
-    public Integer getCreate_time() {
+    public Long getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(Integer create_time) {
+    public void setCreate_time(Long create_time) {
         this.create_time = create_time;
     }
 }

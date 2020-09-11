@@ -7,6 +7,7 @@ import com.corundumstudio.socketio.annotation.OnDisconnect;
 import com.corundumstudio.socketio.annotation.OnEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import yiki.mybatis.react_app_bean.ChatSchema;
 import yiki.mybatis.react_app_main.ChatService;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,10 +27,13 @@ public class MessageEventHandler {
 
     //react-client
     @OnEvent(value = "sendMsg")
-    public void react_onEvent(SocketIOClient client, AckRequest request, Message data) {
+    public void react_onEvent(SocketIOClient client,
+                              AckRequest request,
+                              ChatSchema chat) {
         //回发消息
 //        chatService.storeMsg(data);
-        client.sendEvent("receveMsg", data);
+        client.sendEvent("receveMsg", chat);
+        chatService.postMsg(chat);
         //广播消息
         sendBroadcast();
     }
