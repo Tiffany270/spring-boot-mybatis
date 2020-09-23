@@ -1,5 +1,6 @@
 package yiki.mybatis.react_app_main;
 
+import com.alibaba.druid.sql.visitor.functions.Char;
 import com.corundumstudio.socketio.store.pubsub.PubSubListener;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -23,6 +24,7 @@ import yiki.mybatis.util.MongodbUtil;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -94,6 +96,7 @@ public class ChatService {
         MongoDatabase mongoDatabase = MongodbUtil.mongoGetConnect();
 
         MongoCollection<Document> collection = mongoDatabase.getCollection("chatList");
+        System.out.println(chat.toString());
         Document document = BsonUtil.toDocument(chat);
         collection.insertOne(document);
 
@@ -103,11 +106,11 @@ public class ChatService {
     public List getRecordsByUserId(String ChatId) {
         MongoDatabase mongoDatabase = MongodbUtil.mongoGetConnect();
         MongoCollection<Document> collection = mongoDatabase.getCollection("chatList");
+
+
         String[] chatQuery = ChatId.split("_");
         String chatId1 = chatQuery[0] + "_" + chatQuery[1];
         String chatId2 = chatQuery[1] + "_" + chatQuery[0];
-
-
         BasicDBObject queryCondition = new BasicDBObject();
         BasicDBList values = new BasicDBList();
         values.add(new BasicDBObject("chat_id", chatId1));
