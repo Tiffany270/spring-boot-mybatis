@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import yiki.mybatis.mapper.UserMapper_react;
 import yiki.mybatis.netty_socketio.Message;
 import yiki.mybatis.react_app_bean.ChatSchema;
 import yiki.mybatis.util.BsonUtil;
@@ -23,13 +24,14 @@ import yiki.mybatis.util.JedisPoolUtil;
 import yiki.mybatis.util.MongodbUtil;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 
 @Service
 public class ChatService {
 
+    @Autowired
+    private UserMapper_react userMapper_react;
 
     // redis不适合保存聊天记录，已放弃fine :)
     public void storeMsg(Message message) {
@@ -123,6 +125,45 @@ public class ChatService {
         while (cursor.hasNext()) {
             res.add(cursor.next());
         }
+        return res;
+    }
+
+    public Map getChatByCurrentLoginUser(String userId,String type) {
+        Map<String, Object> res = new HashMap<>();
+
+        // users格式 key为userid
+        Map<String, Object> map = new HashMap<>();
+        List<HashMap<String, Object>> list = userMapper_react.getAllUserListByTypeReturnMap(type);
+        if (list != null && !list.isEmpty()) {
+            for (HashMap<String, Object> map1 : list) {
+                String key = null;
+                Map<String, Object> subMap = new HashMap<>();
+                for (Map.Entry<String, Object> entry : map1.entrySet()) {
+                    if ("userid".equals(entry.getKey())) {
+                        key = (String)entry.getValue();}
+                        subMap.put(entry.getKey(), entry.getValue());
+                }
+                map.put(key, subMap);
+            }
+        }
+
+        res.put("users",map);
+        // chatMsg 格式为数组[] , id为from 和 to都要查出来
+        MongoDatabase mongoDatabase = MongodbUtil.mongoGetConnect();
+        MongoCollection<Document> collection = mongoDatabase.getCollection("chatList");
+        BasicDBObject queryCondition = new BasicDBObject();
+        BasicDBList values = new BasicDBList();
+        values.add(new BasicDBObject("from", userId));
+        values.add(new BasicDBObject("to", userId));
+        queryCondition.put("$or", values);
+        FindIterable findIterable = collection.find(queryCondition);
+        MongoCursor cursor = findIterable.iterator();
+        ArrayList<Object> chatMsg = new ArrayList<>();
+        while (cursor.hasNext()) {
+            chatMsg.add(cursor.next());
+        }
+        res.put("chatMsg",chatMsg);
+
         return res;
     }
 

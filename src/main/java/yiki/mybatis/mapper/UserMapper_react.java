@@ -5,7 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 import yiki.mybatis.react_app_bean.UserSchema;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface UserMapper_react {
@@ -22,6 +24,7 @@ public interface UserMapper_react {
     public int updateUser(UserSchema user) throws  DataAccessException;
     public List<UserSchema> getAllUserList() throws  DataAccessException;
     public List<UserSchema> getAllUserListByType(String type) throws  DataAccessException;
+    public List<HashMap<String,Object>> getAllUserListByTypeReturnMap(String type) throws  DataAccessException;
 
 
 }

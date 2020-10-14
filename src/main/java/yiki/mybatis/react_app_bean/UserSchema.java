@@ -29,6 +29,11 @@ public class UserSchema {
                 '}';
     }
 
+    public UserSchema(String userid, String usertype) {
+        this.userid = userid;
+        this.usertype = usertype;
+    }
+
     public UserSchema(String username,
                       String userpsw,
                       String usertype,

@@ -48,5 +48,9 @@
          select * from react_user WHERE react_user.usertype = #{type};
     </select>
 
+    <select id="getAllUserListByTypeReturnMap" parameterType="map" resultType="map">
+         select userid,username,userheader from react_user WHERE react_user.usertype = #{type};
+    </select>
+
 
 </mapper>
