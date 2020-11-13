@@ -32,10 +32,10 @@ public class MessageEventHandler {
                               ChatSchema chat) {
         //回发消息
 //        chatService.storeMsg(data);
-        client.sendEvent("receveMsg", chat);
+//        client.sendEvent("receveMsg", chat);
         chatService.postMsg(chat);
         //广播消息
-        sendBroadcast();
+        sendBroadcast(chat);
     }
 
 
@@ -49,11 +49,12 @@ public class MessageEventHandler {
     public void onConnect(SocketIOClient client) {
 //        String mac = client.getHandshakeData().getSingleUrlParam("mac");
         //存储SocketIOClient，用于发送消息
-//        socketIOClientMap.put(mac, client);
         //回发消息
         client.sendEvent("message", "onConnect back");
 //        System.out.println("客户端:" + client.getSessionId() + "已连接,mac=" + mac);
         System.out.println("客户端:" + client.getSessionId() + "已连接");
+        socketIOClientMap.put(client.getSessionId().toString(), client);
+
     }
 
     /**
@@ -78,16 +79,15 @@ public class MessageEventHandler {
         //回发消息
         client.sendEvent("messageevent", "我是服务器都安发送的信息");
         //广播消息
-        sendBroadcast();
     }
 
     /**
      * 广播消息
      */
-    public void sendBroadcast() {
+    public void sendBroadcast(ChatSchema chat) {
         for (SocketIOClient client : socketIOClientMap.values()) {
             if (client.isChannelOpen()) {
-                client.sendEvent("Broadcast", "当前时间", System.currentTimeMillis());
+                client.sendEvent("receveMsg", chat);
             }
         }
 
